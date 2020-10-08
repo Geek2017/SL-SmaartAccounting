@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> SmartAdmin</title>
+    <title> SmartAccounting</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -13,16 +13,16 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/font-awesome.min.css">
 
-    <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/SmartAdmin-production-plugins.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/SmartAdmin-production.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/SmartAdmin-skins.min.css">
+    <!-- smartadmin Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-production-plugins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-skins.min.css">
 
-    <!-- SmartAdmin RTL Support -->
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/SmartAdmin-rtl.min.css">
+    <!-- smartadmin RTL Support -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/smartadmin-rtl.min.css">
 
-    <!-- We recommend you use "your_style.css" to override SmartAdmin
-		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+    <!-- We recommend you use "your_style.css" to override smartadmin
+		     specific styles this will also ensure you retrain your customization with each smartadmin update.
 		<link rel="stylesheet" type="text/css" media="screen" href="./assets/css/your_style.css"> -->
 
     <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
@@ -33,7 +33,7 @@
     <link rel="icon" href="./assets/img/favicon/favicon.ico" type="image/x-icon">
 
     <!-- #GOOGLE FONT -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
     <!-- #APP SCREEN / ICONS -->
     <!-- Specifying a Webpage Icon for Web Clip 
@@ -60,7 +60,7 @@
         <!--<span id="logo"></span>-->
 
         <div id="logo-group">
-            <span id="logo"> <img src="./assets/img/logo.png" alt="SmartAdmin"> </span>
+            <span id="logo"> <img src="./assets/img/logo.png" alt="SmartAccounting"> </span>
 
             <!-- END AJAX-DROPDOWN -->
         </div>
@@ -76,11 +76,11 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 hidden-xs hidden-sm">
-                    <h1 class="txt-color-red login-header-big">SmartAdmin</h1>
+                    <h1 class="txt-color-red login-header-big">SmartAccounting</h1>
                     <div class="hero">
 
                         <div class="pull-left login-desc-box-l">
-                            <h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAdmin, everywhere you go!</h4>
+                            <h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAccounting, everywhere you go!</h4>
                             <div class="login-app-icons">
                                 <a href="javascript:void(0);" class="btn btn-danger btn-sm">Frontend Template</a>
                                 <a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
@@ -93,7 +93,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                            <h5 class="about-heading">About SmartAdmin - Are you up to date?</h5>
+                            <h5 class="about-heading">About SmartAccounting - Are you up to date?</h5>
                             <p>
                                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.
                             </p>
@@ -110,33 +110,29 @@
                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                     <div class="well no-padding">
 
-                        <form action="php/demo-register.php" id="smart-form-register" class="smart-form client-form">
+                        <form action="" id="register" class="smart-form client-form">
                             <header>
                                 Registration is FREE*
                             </header>
 
                             <fieldset>
-                                <section>
-                                    <label class="input"> <i class="icon-append fa fa-user"></i>
-											<input type="text" name="username" placeholder="Username">
-											<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
-                                </section>
+
 
                                 <section>
                                     <label class="input"> <i class="icon-append fa fa-envelope"></i>
-											<input type="email" name="email" placeholder="Email address">
+											<input id="email" type="email" name="email" placeholder="Email address">
 											<b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
                                 </section>
 
                                 <section>
                                     <label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password" placeholder="Password" id="password">
+											<input id="password" type="password" name="password" placeholder="Password" id="password">
 											<b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
                                 </section>
 
                                 <section>
                                     <label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="passwordConfirm" placeholder="Confirm password">
+											<input id="passwordConfirm" type="password" name="passwordConfirm" placeholder="Confirm password">
 											<b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
                                 </section>
                             </fieldset>
@@ -145,37 +141,20 @@
                                 <div class="row">
                                     <section class="col col-6">
                                         <label class="input">
-												<input type="text" name="firstname" placeholder="First name">
+												<input id="firstname" type="text" name="firstname" placeholder="First name">
 											</label>
                                     </section>
                                     <section class="col col-6">
                                         <label class="input">
-												<input type="text" name="lastname" placeholder="Last name">
+												<input id="lastname" type="text" name="lastname" placeholder="Last name">
 											</label>
                                     </section>
                                 </div>
 
-                                <div class="row">
-                                    <section class="col col-6">
-                                        <label class="select">
-												<select name="gender">
-													<option value="0" selected="" disabled="">Gender</option>
-													<option value="1">Male</option>
-													<option value="2">Female</option>
-													<option value="3">Prefer not to answer</option>
-												</select> <i></i> </label>
-                                    </section>
-                                    <section class="col col-6">
-                                        <label class="input"> <i class="icon-append fa fa-calendar"></i>
-												<input type="text" name="request" placeholder="Request activation on" class="datepicker" data-dateformat='dd/mm/yy'>
-											</label>
-                                    </section>
-                                </div>
+
 
                                 <section>
-                                    <label class="checkbox">
-											<input type="checkbox" name="subscription" id="subscription">
-											<i></i>I want to receive news and special offers</label>
+
                                     <label class="checkbox">
 											<input type="checkbox" name="terms" id="terms">
 											<i></i>I agree with the <a href="#" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a></label>
@@ -196,19 +175,7 @@
                         </form>
 
                     </div>
-                    <p class="note text-center">*FREE Registration ends on October 2015.</p>
-                    <h5 class="text-center">- Or sign in using -</h5>
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
+
                 </div>
             </div>
         </div>
@@ -231,7 +198,7 @@
 
 
 
-                        <h1>SmartAdmin TERMS & CONDITIONS TEMPLATE</h1>
+                        <h1>SmartAccounting TERMS & CONDITIONS TEMPLATE</h1>
 
 
 
@@ -383,7 +350,7 @@
                         <p>These terms and conditions will be governed by and construed in accordance with [GOVERNING LAW], and any disputes relating to these terms and conditions will be subject to the [non-]exclusive jurisdiction of the courts of [JURISDICTION].</p>
 
                         <h2>About these website terms and conditions</h2>
-                        <p>We created these website terms and conditions with the help of a free website terms and conditions form developed by Contractology and available at <a href="http://www.SmartAdmin.com">www.SmartAdmin.com</a>. Contractology
+                        <p>We created these website terms and conditions with the help of a free website terms and conditions form developed by Contractology and available at <a href="http://www.SmartAccounting.com">www.SmartAccounting.com</a>. Contractology
                             supply a wide variety of commercial legal documents, such as <a href="#">template data protection statements</a>.
                         </p>
                         <h2>[Registrations and authorisations</h2>
@@ -416,7 +383,7 @@
 
                     <p><strong>By using this  WEBSITE TERMS AND CONDITIONS template document, you agree to the 
 	 <a href="#">terms and conditions</a> set out on 
-	 <a href="#">SmartAdmin.com</a>.  You must retain the credit 
+	 <a href="#">SmartAccounting.com</a>.  You must retain the credit 
 	 set out in the section headed "ABOUT THESE WEBSITE TERMS AND CONDITIONS".  Subject to the licensing restrictions, you should 
 	 edit the document, adapting it to the requirements of your jurisdiction, your business and your 
 	 website.  If you are not a lawyer, we recommend that you take professional legal advice in relation to the editing and 
@@ -485,11 +452,26 @@
 		<![endif]-->
 
     <!-- MAIN APP JS FILE -->
-    <script src="./assets/js/app.min.js"></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
 
     <script type="text/javascript">
-        runAllForms();
+        var firebaseConfig = {
+            apiKey: "AIzaSyDctuMec-r7wNDnp9Wtaip1GG1QcxjJeqc",
+            authDomain: "smartaccountings.firebaseapp.com",
+            databaseURL: "https://smartaccountings.firebaseio.com",
+            projectId: "smartaccountings",
+            storageBucket: "smartaccountings.appspot.com",
+            messagingSenderId: "704826326305",
+            appId: "1:704826326305:web:81dcc6f2f5bfb322ca5260",
+            measurementId: "G-XDQQ395PBY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
+    <script type="text/javascript">
         // Model i agree button
         $("#i-agree").click(function() {
             $this = $("#terms");
@@ -500,94 +482,10 @@
                 $('#myModal').modal('toggle');
             }
         });
-
-        // Validation
-        $(function() {
-            // Validation
-            $("#smart-form-register").validate({
-
-                // Rules for form validation
-                rules: {
-                    username: {
-                        required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 20
-                    },
-                    passwordConfirm: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 20,
-                        equalTo: '#password'
-                    },
-                    firstname: {
-                        required: true
-                    },
-                    lastname: {
-                        required: true
-                    },
-                    gender: {
-                        required: true
-                    },
-                    terms: {
-                        required: true
-                    }
-                },
-
-                // Messages for form validation
-                messages: {
-                    login: {
-                        required: 'Please enter your login'
-                    },
-                    email: {
-                        required: 'Please enter your email address',
-                        email: 'Please enter a VALID email address'
-                    },
-                    password: {
-                        required: 'Please enter your password'
-                    },
-                    passwordConfirm: {
-                        required: 'Please enter your password one more time',
-                        equalTo: 'Please enter the same password as above'
-                    },
-                    firstname: {
-                        required: 'Please select your first name'
-                    },
-                    lastname: {
-                        required: 'Please select your last name'
-                    },
-                    gender: {
-                        required: 'Please select your gender'
-                    },
-                    terms: {
-                        required: 'You must agree with Terms and Conditions'
-                    }
-                },
-
-                // Ajax form submition
-                submitHandler: function(form) {
-                    $(form).ajaxSubmit({
-                        success: function() {
-                            $("#smart-form-register").addClass('submited');
-                        }
-                    });
-                },
-
-                // Do not change code below
-                errorPlacement: function(error, element) {
-                    error.insertAfter(element.parent());
-                }
-            });
-
-        });
     </script>
 
+
+    <script src="./register.js"></script>
 </body>
 
 </html>
