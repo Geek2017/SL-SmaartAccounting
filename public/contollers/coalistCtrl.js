@@ -1,167 +1,81 @@
-angular.module('newApp').controller('coalistCtrl', function($scope) {
+angular.module('newApp').controller('coalistCtrl', function($scope, $timeout) {
     pageSetUp();
 
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
 
-    $(document).ready(function() {
+    firebase.database().ref('/chart_of_accounts/').orderByChild('uid').on("value", function(snapshot) {
+        $timeout(function() {
+            $scope.$apply(function() {
 
-        pageSetUp();
+                let returnArr = [];
+                snapshot.forEach(childSnapshot => {
+                    let item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+                    returnArr.push(item);
+                });
+                console.log(returnArr)
 
-        /* // DOM Position key index //
-		
-			l - Length changing (dropdown)
-			f - Filtering input (search)
-			t - The Table! (datatable)
-			i - Information (records)
-			p - Pagination (paging)
-			r - pRocessing 
-			< and > - div elements
-			<"#id" and > - div with an id
-			<"class" and > - div with a class
-			<"#id.class" and > - div with an id and class
-			
-			Also see: http://legacy.datatables.net/usage/features
-			*/
-
-        /* BASIC ;*/
-        var responsiveHelper_dt_basic = undefined;
-        var responsiveHelper_datatable_fixed_column = undefined;
-        var responsiveHelper_datatable_col_reorder = undefined;
-        var responsiveHelper_datatable_tabletools = undefined;
-
-        var breakpointDefinition = {
-            tablet: 1024,
-            phone: 480
-        };
-
-        $('#dt_basic').dataTable({
-            "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
-                "t" +
-                "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-            "autoWidth": true,
-            "preDrawCallback": function() {
-                // Initialize the responsive datatables helper once.
-                if (!responsiveHelper_dt_basic) {
-                    responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#dt_basic'), breakpointDefinition);
-                }
-            },
-            "rowCallback": function(nRow) {
-                responsiveHelper_dt_basic.createExpandIcon(nRow);
-            },
-            "drawCallback": function(oSettings) {
-                responsiveHelper_dt_basic.respond();
-            }
-        });
-
-        /* END BASIC */
-
-        /* COLUMN FILTER  */
-        var otable = $('#datatable_fixed_column').DataTable({
-            //"bFilter": false,
-            //"bInfo": false,
-            //"bLengthChange": false
-            //"bAutoWidth": false,
-            //"bPaginate": false,
-            //"bStateSave": true // saves sort state using localStorage
-            "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>" +
-                "t" +
-                "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-            "autoWidth": true,
-            "preDrawCallback": function() {
-                // Initialize the responsive datatables helper once.
-                if (!responsiveHelper_datatable_fixed_column) {
-                    responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
-                }
-            },
-            "rowCallback": function(nRow) {
-                responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
-            },
-            "drawCallback": function(oSettings) {
-                responsiveHelper_datatable_fixed_column.respond();
+                $scope.coas = returnArr;
+            });
+            $('#here').after(' <ul style="margin:0!important;margin-top:4px" class="pagination pagination-sm pull-right"  ><li ><a href="#coalist" rel="0" id="backward"> < </a></li> <li id="nav"></li>   <li><a href="#coalist" rel="0" id="forward"> > </a></li></ul>');
+            var rowsShown = 1;
+            var rowsTotal = $('#data tbody tr').length;
+            var numPages = rowsTotal / rowsShown;
+            for (i = 0; i < numPages; i++) {
+                var pageNum = i + 1;
+                $('#nav').append('<a href="#coalist" rel="' + i + '">' + pageNum + '</a>');
             }
 
-        });
+            $('#data tbody tr').hide();
+            $('#data tbody tr').slice(0, rowsShown).show();
+            $('#nav a:first').addClass('active');
+            $('#nav a ').bind('click', function() {
 
-        // custom toolbar
-        $("div.toolbar").html('<div class="text-right"><img src="img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+                $('#nav a').removeClass('active');
+                $(this).addClass('active');
+                var currPage = $(this).attr('rel');
+                localStorage.setItem('curp', currPage)
+                var startItem = currPage * rowsShown;
+                var endItem = startItem + rowsShown;
+                $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+                css('display', 'table-row').animate({ opacity: 1 }, 300);
+                console.log($(this).attr('rel'))
 
-        // Apply the filter
-        $("#datatable_fixed_column thead th input[type=text]").on('keyup change', function() {
 
-            otable
-                .column($(this).parent().index() + ':visible')
-                .search(this.value)
-                .draw();
+            });
 
-        });
-        /* END COLUMN FILTER */
+            $("#backward").click(function() {
 
-        /* COLUMN SHOW - HIDE */
-        $('#datatable_col_reorder').dataTable({
-            "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>" +
-                "t" +
-                "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-            "autoWidth": true,
-            "preDrawCallback": function() {
-                // Initialize the responsive datatables helper once.
-                if (!responsiveHelper_datatable_col_reorder) {
-                    responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
+                var cp = localStorage.getItem('curp');
+                if (cp >= 1) {
+                    cp = cp - 1;
+                    localStorage.setItem('curp', cp)
+                    var startItem = cp * rowsShown;
+                    var endItem = startItem + rowsShown;
+                    $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+                    css('display', 'table-row').animate({ opacity: 1 }, 300);
                 }
-            },
-            "rowCallback": function(nRow) {
-                responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
-            },
-            "drawCallback": function(oSettings) {
-                responsiveHelper_datatable_col_reorder.respond();
-            }
-        });
+            });
 
-        /* END COLUMN SHOW - HIDE */
+            $("#forward").click(function() {
 
-        /* TABLETOOLS */
-        $('#datatable_tabletools').dataTable({
+                var tp = $('#data tbody tr').length - 1;
 
-            // Tabletools options: 
-            //   https://datatables.net/extensions/tabletools/button_options
-            "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'T>r>" +
-                "t" +
-                "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-            "oTableTools": {
-                "aButtons": [
-                    "copy",
-                    "csv",
-                    "xls",
-                    {
-                        "sExtends": "pdf",
-                        "sTitle": "SmartAdmin_PDF",
-                        "sPdfMessage": "SmartAdmin PDF Export",
-                        "sPdfSize": "letter"
-                    },
-                    {
-                        "sExtends": "print",
-                        "sMessage": "Generated by SmartAdmin <i>(press Esc to close)</i>"
-                    }
-                ],
-                "sSwfPath": "js/plugin/datatables/swf/copy_csv_xls_pdf.swf"
-            },
-            "autoWidth": true,
-            "preDrawCallback": function() {
-                // Initialize the responsive datatables helper once.
-                if (!responsiveHelper_datatable_tabletools) {
-                    responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
+                var cp = localStorage.getItem('curp');
+                if (cp < tp) {
+                    cp = cp * 1 + 1;
+                    localStorage.setItem('curp', cp)
+                    var startItem = cp * rowsShown;
+                    var endItem = startItem + rowsShown;
+                    $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+                    css('display', 'table-row').animate({ opacity: 1 }, 300);
                 }
-            },
-            "rowCallback": function(nRow) {
-                responsiveHelper_datatable_tabletools.createExpandIcon(nRow);
-            },
-            "drawCallback": function(oSettings) {
-                responsiveHelper_datatable_tabletools.respond();
-            }
-        });
+            });
 
-        /* END TABLETOOLS */
+        }, 100);
 
-    })
+
+    });
+
 
 
 });
