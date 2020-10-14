@@ -29,8 +29,19 @@
 
             <label class="input"> 
                     <input type="text" name="name" ng-model="findcoa"> <i class="icon-append fa fa-search"></i>
-                </label>
             </label>
+            <label class="input pull-right">
+                <label class="select ">Page Filter
+                    <select name="options" id="pfilter" >
+                       
+                        <option value="10">10</option>
+                        <option value="30">30</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        
+                    </select> <i></i> </label>
+            </label>
+
             <table id="data" class="table table-striped table-bordered table-hover" width="100%">
                 <thead>
                     <tr>

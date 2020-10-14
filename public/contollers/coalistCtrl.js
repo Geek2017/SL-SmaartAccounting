@@ -3,6 +3,15 @@ angular.module('newApp').controller('coalistCtrl', function($scope, $timeout) {
 
 
     firebase.database().ref('/chart_of_accounts/').orderByChild('uid').on("value", function(snapshot) {
+
+
+        if (!localStorage.getItem('pf')) {
+            if (localStorage.getItem('pf') <= 10) {
+                localStorage.setItem('pf', 10)
+            }
+        }
+
+
         $timeout(function() {
             $scope.$apply(function() {
 
@@ -17,7 +26,19 @@ angular.module('newApp').controller('coalistCtrl', function($scope, $timeout) {
                 $scope.coas = returnArr;
             });
             $('#here').after(' <ul style="margin:0!important;margin-top:4px" class="pagination pagination-sm pull-right"  ><li ><a href="#coalist" rel="0" id="backward"> < </a></li> <li id="nav"></li>   <li><a href="#coalist" rel="0" id="forward"> > </a></li></ul>');
-            var rowsShown = 1;
+            var rowsShown = localStorage.getItem('pf')
+
+            $("#pfilter").change(function() {
+
+                rowsShown = localStorage.getItem('pf')
+
+
+                localStorage.setItem('pf', $("#pfilter option:selected").text())
+
+                window.location.href = "#"
+                window.location.href = "#coalist"
+            });
+
             var rowsTotal = $('#data tbody tr').length;
             var numPages = rowsTotal / rowsShown;
             for (i = 0; i < numPages; i++) {
