@@ -13,7 +13,7 @@ angular.module('newApp').controller('coanewCtrl', function($scope) {
 
         var data = {
             code: $('#code').val(),
-            categories: $("#cat option:selected").text(),
+            categories: $("#type option:selected").text(),
             type: $("#type option:selected").text(),
             p_subcode: $('#psc').val(),
             s_subcode: ssc,
