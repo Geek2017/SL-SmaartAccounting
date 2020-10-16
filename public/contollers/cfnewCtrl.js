@@ -1,7 +1,7 @@
 angular.module('newApp').controller('cfnewCtrl', function($scope) {
     pageSetUp();
-
-    $scope.tojson = function() {
+    var obj;
+    $scope.tojson = function(obj) {
 
         var table = $('#convert-table').tableToJSON({
 
@@ -9,39 +9,44 @@ angular.module('newApp').controller('cfnewCtrl', function($scope) {
                 return $cell.find('input').val() || $cell.find("#type option:selected").text();
             }
 
-        })
 
-        alert(JSON.stringify(table));
+        })
+        return table;
+
     }
 
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    var datetoday = month + ":" + day + ":" + year;
+
     $('#newcf').on('submit', function(e) {
+        $scope.tojson();
 
         e.preventDefault();
 
-        $scope.tojson();
+        console.log($scope.tojson(obj))
 
-        var uid = firebase.database().ref().child('cash_flow').push().key;
-        var orno = "24910";
+        var newobj = $scope.tojson(obj);
+        // [$scope.tojson(obj)];
 
-        var obj = [{
-            "Amount": 100.00,
-            "Particulars": "General Weighted Average",
-            "Remarks": "none",
-            "Type": "Credentials"
-        }, {
-            "Amount": 20.00,
-            "Particulars": "Documentary Stamp",
-            "Remarks": "none",
-            "Type": "Credentials"
-        }]
+        var uid = firebase.database().ref().child('chart_of_accounts').push().key;
+        var orno = $scope.ornum;
 
-        $('#OR_no').val();
 
+
+        const [, ...rest] = newobj.reverse();
+        const withoutLast = rest.reverse();
+        console.log(withoutLast)
         var data = {
-            name: "JPG",
-            course: "BSIT",
-            OR: {
-                [orno]: obj
+            [datetoday]: {
+                name: $scope.Lname + "," + $scope.Fname,
+                course: $scope.course_yr,
+                OR: {
+                    [orno]: withoutLast
+                }
             }
         }
 
