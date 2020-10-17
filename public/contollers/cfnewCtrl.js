@@ -55,6 +55,18 @@ angular.module('newApp').controller('cfnewCtrl', function($scope) {
         firebase.database().ref().update(updates);
         console.log(updates)
 
+        if (updates) {
+
+
+            $("#notif").append('<div class="alert alert-success fade in"><button class="close" data-dismiss="alert">×</button><i class="fa-fw fa fa-check"></i><strong>Success</strong> Data had been save!.</div>');
+            setTimeout(function() {
+                window.location.href = "#/"
+                window.location.href = "#cfnew"
+            }, 1500);
+        } else {
+            $("#notif").append('<div class="alert alert-danger fade in"><button class="close" data-dismiss="alert">×</button><i class="fa-fw fa fa-check"></i><strong>Error</strong> Check your Input !</div>');
+        }
+
     });
     var cnt = 0;
     $scope.addtr = function() {
@@ -71,7 +83,7 @@ angular.module('newApp').controller('cfnewCtrl', function($scope) {
         $('table thead th').each(function(i) {
 
         });
-
+        calculateSum();
     }
 
     $("#appendhere").on('click', '.deleteb', function() {
@@ -79,6 +91,7 @@ angular.module('newApp').controller('cfnewCtrl', function($scope) {
         $('table thead th').each(function(i) {
 
         });
+        calculateSum();
     });
 
 
