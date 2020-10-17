@@ -22,25 +22,25 @@
                                 <section class="col col-3">
                                     <label class="label">OR#</label>
                                     <label class="input"> <i class="icon-append fa fa-tags"></i>
-                                        <input type="text"  ng-model="ornum" required>
+                                        <input type="text"  ng-model="ornum" placeholder="OR No." required>
                                     </label>
                                 </section>
                                 <section class="col col-3">
                                     <label class="label">Last Name</label>
                                     <label class="input"> <i class="icon-append fa fa-user"></i>
-                                        <input type="text" ng-model="Lname">
+                                        <input type="text" ng-model="Lname" placeholder="Last Name" required>
                                     </label>
                                 </section>
                                 <section class="col col-3">
                                     <label class="label">Firts Name</label>
                                     <label class="input"> <i class="icon-append fa fa-user"></i>
-                                        <input type="text" ng-model="Fname" required>
+                                        <input type="text" ng-model="Fname" placeholder="Firts Name" required>
                                     </label>
                                 </section>
                                 <section class="col col-3">
                                     <label class="label">Course & Year</label>
                                     <label class="input"> <i class="icon-append fa fa-level-up"></i>
-                                        <input type="text" ng-model="course_yr" required>
+                                        <input type="text" ng-model="course_yr" placeholder="Course & Year" required>
                                     </label>
                                 </section>
 
@@ -49,9 +49,9 @@
                             <div class="panel-body ">
 
                                 <div class="btn-group btn-group-sm pull-right">
-                                    <button type="button" class="btn btn-success "><i class="fa fa-plus-circle"></i></button>
+                                    <button type="button" class="btn btn-success " ng-click="addtr()"><i class="fa fa-plus-circle"></i></button>
 
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+                                    <button type="button" class="btn btn-danger" ng-click="removetr()"><i class="fa fa-minus-circle"></i></button>
                                 </div>
                                 <br>
                                 <br>
@@ -64,10 +64,10 @@
                                             <th>Amount</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="appendhere">
+                                        <tr class="row_to_clone">
                                             <td> <label class="input"> 
-                                                <input type="text" name="particulars" value="JM.G">
+                                                <input type="text" name="particulars"  placeholder="Particulars" required>
                                             </label></td>
                                             <td>
                                                 <select name="interested " id="type" required class="form-control btn-block">
@@ -82,27 +82,32 @@
                                                 </select>
                                             </td>
                                             <td><label class="input"> 
-                                                <input type="text" name="remarks" value="THE BEST REMARKS">
+                                                <input type="text" name="remarks" placeholder="Remarks">
                                             </label></td>
                                             </td>
-                                            <td><label class="input"> 
-                                                <input type="number" name="amount" value="100.00">
-                                            </label></td>
+                                            <td class="col-md-2">
+
+                                                <label class="input col-md-10"> 
+                                                    <input type="text" name="amount" value="" class="txt" autocomplete='off' />
+                                               </label>
+
+                                                <label class="input col-md-1"> 
+                                                    <button class="btn btn-danger btn-sm deleteb">X</button>
+                                                </label>
                                             </td>
                                         </tr>
-
-
+                                    </tbody>
+                                    <tbody>
                                         <tr>
                                             <td></td>
+                                            <td></td>
                                             <td>
-
-                                            </td>
-                                            <td>
-                                                <h4>Total Monthly Recurring Charges</h4>
+                                                <h4>Grand Total</h4>
                                             </td>
                                             <td>
                                                 <h4><label class="input"> 
-                                                    <input type="number" name="total" value="100.00">
+                                                    <span id="sum">0.00</span>
+
                                                 </label></h4>
                                             </td>
                                         </tr>
@@ -112,7 +117,7 @@
 
                             <br>
                             <div class="pull-right ">
-                                <button class="btn btn-primary" id="convert-table">Convert!</button>
+
                                 <button type="submit" name="submit" class="btn btn-success btn-lg">
                                SUBMIT
                             </button>
