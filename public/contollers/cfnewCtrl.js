@@ -41,17 +41,16 @@ angular.module('newApp').controller('cfnewCtrl', function($scope) {
         const withoutLast = rest.reverse();
         console.log(withoutLast)
         var data = {
-            [datetoday]: {
-                name: $scope.Lname + "," + $scope.Fname,
-                course: $scope.course_yr,
-                OR: {
-                    [orno]: withoutLast
-                }
-            }
+            date: datetoday,
+            name: $scope.Lname + "," + $scope.Fname,
+            course: $scope.course_yr,
+            ornumber: orno,
+            transaction: withoutLast,
+            total: $('#sum').text()
         }
 
         var updates = {};
-        updates['/cash_flow/' + uid] = data;
+        updates['/cash_flows/' + uid] = data;
         firebase.database().ref().update(updates);
         console.log(updates)
 
