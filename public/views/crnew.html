@@ -31,64 +31,58 @@
 
                 </div>
                 <!-- end widget edit box -->
-
+                <div id="here"></div>
                 <!-- widget content -->
                 <div class="widget-body no-padding ">
 
                     <!-- Success states for elements -->
-                    <form class="smart-form ">
-                        <header>New Accounts</header>
+                    <form id="newcr" class="smart-form ">
+                        <header>Cash Receips</header>
 
                         <fieldset>
                             <section>
                                 <div class="row ">
-                                    <section class="col col-4 ">
+                                    <section class="col col-6 ">
 
-                                        <label class="select ">
-                                                    <select name="interested ">
-                                                        <option value="0 " selected=" " disabled=" ">Categories</option>
-                                                        <option value="1 ">Assets</option>
-                                                        <option value="2 ">Liabilities</option>
-                                                        <option value="3 ">Equity</option>
-                                                        <option value="4 ">Revenue</option>
-                                                        <option value="5 ">Expences</option>
-                                                    </select> <i></i> 
-                                            </label>
+                                        <label class="input"> <i class="icon-append fa fa-calendar"></i>
+											<input ng-model="datepicker" type="text" name="request" placeholder="Set Date" class="datepicker" data-dateformat='mm/dd/yy' required>
+										</label>
 
                                     </section>
-                                    <section class="col col-4 ">
+
+
+                                    <section class="col col-6 ">
                                         <label class="input ">
-                                                <input type="text " placeholder="Code " >
+                                            <i class="icon-append fa fa-money"></i>
+                                                <input class="cash" ng-change="{{total=cash+cheque}}" ng-model="cash" type="number " placeholder="Cash" >
                                             </label>
                                     </section>
-                                    <section class="col col-4 ">
+                                    <section class="col col-6 ">
                                         <label class="input ">
-                                                <label class="select ">
-                                                    <select name="interested ">
-                                                        <option value="0 " selected=" " disabled=" ">Type</option>
-                                                        <option value="1 ">CURRENT ASSET</option>
-                                                        <option value="2 ">NON CURRENT ASSET</option>
-                                                        <option value="3 ">CURRENT LIABILITIES</option>
-                                                        <option value="4 ">NON-CURRENT LIABLITIES</option>
-                                                        <option value="5 ">CAPITAL</option>
-                                                        <option value="6 ">REVENUE</option>
-                                                        <option value="7 ">EXPENSES</option>
-                                                    </select> <i></i> </label>
-                                        </label>
+                                  
+                                             
+                                            <label class="textarea"> <i class="icon-append fa fa-comment"></i> 										
+                                                <textarea rows="3" name="review" class="description" placeholder="Description"></textarea> 
+                                            </label>
+
                                     </section>
-                                    <section class="col col-4 ">
+                                    <section class="col col-6 ">
                                         <label class="input ">
-                                                <input type="text " placeholder="P-subcode ">
+                                            </label>
+                                        <label class="textarea"> <i class="icon-append fa fa-exclamation"></i> 										
+                                                <textarea rows="3" name="review" class="remarks" placeholder="Remarks"></textarea> 
                                             </label>
                                     </section>
-                                    <section class="col col-4 ">
+                                    <section class="col col-6 ">
                                         <label class="input ">
-                                                <input type="text " placeholder="S-subcode ">
+                                            <i class="icon-append fa fa-bank"></i>
+                                                <input class="cheque" ng-model="cheque" type="number " placeholder="Bank Cheque" ng-change="{{total=cash+cheque}}" >
                                             </label>
                                     </section>
-                                    <section class="col col-4 ">
+                                    <section class="col col-6 ">
                                         <label class="input ">
-                                                <input type="text " placeholder="Name ">
+                                            <i class="icon-append fa fa-bar-chart-o"></i>
+                                                <input class="total" ng-model="total" type="number" placeholder="Total" required>
                                             </label>
                                     </section>
                                 </div>
@@ -99,7 +93,8 @@
 
                         <footer>
                             <button type="submit " class="btn btn-primary ">Submit</button>
-                            <button type="button " class="btn btn-default " onclick="window.history.back(); ">Back</button>
+                            <button type="button " class="btn btn-default " onclick="  window.location.href = '#'
+                            window.location.href = '#crnew' ">Clear</button>
                         </footer>
                     </form>
                     <!--/ Success states for elements -->
