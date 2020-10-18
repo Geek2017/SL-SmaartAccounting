@@ -72,7 +72,7 @@
                         <td>{{ncf.Particulars}}</td>
                         <td> {{ncf.Description}}</td>
                         <td>{{ncf.Remarks}}</td>
-                        <td>{{ncf.Amount | currency:"₱ ":0.0}}</td>
+                        <td>{{ncf.Amount | currency : '₱ ' : 2}}</td>
                     </tr>
                     <tr style="background-color: #57889c!important;
                     color: white;">
@@ -83,10 +83,27 @@
                         <td></td>
                         <td></td>
                         <td><strong>Total:</strong> </td>
-                        <td><strong> {{cf.total | currency:"₱ ":0.0}} </strong></td>
+                        <td><strong> {{cf.total | currency : '₱ ' : 2}} </strong></td>
                     </tr>
 
                 </tbody>
+                <tr style="background-color:#57889c!important;
+                color: white;">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <h5>Total Cash & Check Receipts for the Day:</h5>
+                    </td>
+                    <td>
+                        <h6>{{tcol | currency : '₱ ' : 2}} </h6>
+                    </td>
+                </tr>
+
+
             </table>
 
 

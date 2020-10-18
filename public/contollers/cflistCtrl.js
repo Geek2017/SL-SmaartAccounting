@@ -19,10 +19,18 @@ angular.module('newApp').controller('cflistCtrl', function($scope, $timeout) {
                     item.key = childSnapshot.key;
                     returnArr.push(item);
                 });
-                console.log(returnArr)
+
 
                 $scope.cfs = returnArr;
-                console.log($scope.cfs)
+                var tcol = 0;
+                for (var i = 0; i < returnArr.length; i++) {
+                    console.log(returnArr[i].total)
+                    tcol += 1 * returnArr[i].total;
+
+                }
+                console.log(tcol)
+                $scope.tcol = tcol;
+
             });
             $('#here').after(' <ul style="margin:0!important;margin-top:4px" class="pagination pagination-sm pull-right"  ><li ><a href="#cflist" rel="0" id="backward"> < </a></li> <li id="nav"></li>   <li><a href="#cflist" rel="0" id="forward"> > </a></li></ul>');
             var rowsShown = localStorage.getItem('pf')
