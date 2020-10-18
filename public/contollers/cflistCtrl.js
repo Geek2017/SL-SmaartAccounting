@@ -9,26 +9,30 @@ angular.module('newApp').controller('cflistCtrl', function($scope, $timeout) {
             }
         }
 
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+
+        const datetoday = month + ":" + day + ":" + year;
+        // '10:18:2020';
+        // month + ":" + day + ":" + year;
 
         $timeout(function() {
             $scope.$apply(function() {
 
+
+                var tcol = 0;
                 let returnArr = [];
                 snapshot.forEach(childSnapshot => {
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
-                    returnArr.push(item);
+                    if (datetoday === item.date) {
+                        returnArr.push(item);
+                        tcol += 1 * item.total;
+                    }
                 });
-
-
                 $scope.cfs = returnArr;
-                var tcol = 0;
-                for (var i = 0; i < returnArr.length; i++) {
-                    console.log(returnArr[i].total)
-                    tcol += 1 * returnArr[i].total;
-
-                }
-                console.log(tcol)
                 $scope.tcol = tcol;
 
             });
