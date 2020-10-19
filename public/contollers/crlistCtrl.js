@@ -1,7 +1,6 @@
 angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
     pageSetUp();
-    firebase.database().ref('/cash_flows/').orderByChild('uid').on("value", function(snapshot) {
-
+    firebase.database().ref('/cash_receipts/').orderByChild('date').on("value", function(snapshot) {
 
         if (!localStorage.getItem('pf')) {
             if (localStorage.getItem('pf') <= 10) {
@@ -14,28 +13,117 @@ angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
         var day = dateObj.getUTCDate();
         var year = dateObj.getUTCFullYear();
 
-        const datetoday = month + ":" + day + ":" + year;
+        const datetoday = '10/18/2020';
+        //  month + "/" + day + "/" + year;
         // '10:18:2020';
         // month + ":" + day + ":" + year;
 
+
         $timeout(function() {
+                /*
+            *
+            *   Jepoy Code
+            * 
+            */
+
+           let total_sum = {}
+           let reciepts = snapshot.val()
+           let counter = 1
+
+           
+           for (const key in reciepts) {
+            let c = 1;
+           for (let k in total_sum){
+               for(let j in k) {
+               j['count'] = c++
+               reciepts[key]['count'] = c++;
+           }
+           }
+
+
+             
+               total_sum[reciepts[key]['date']] ? total_sum[reciepts[key]['date']].push(reciepts[key]) : (total_sum[reciepts[key]['date']] = [reciepts[key]])
+               total_sum[reciepts[key]['date']]['date'] = reciepts[key].date
+               total_sum[reciepts[key]['date']]['total_cash'] = (total_sum[reciepts[key]['date']]['total_cash'] ?? 0) + +reciepts[key]['cash']
+               total_sum[reciepts[key]['date']]['total_cash_check'] = (total_sum[reciepts[key]['date']]['total_cash_check'] ?? 0 ) + +reciepts[key].total
+
+
+
+                   // console.log(+snappy[snapper]['cash'])
+           }
+           console.log('Total sum of cash:', Object.entries(total_sum).map(item => item[1]))
+            var htmlData = ''
+            var c = 1
+           for (const key in total_sum){
+               for (const value of total_sum[key]){
+                   htmlData +=`<tr style="display: table-row;">
+                   <td class="ng-binding">${c++}</td>
+                   <td class="ng-binding">${value.date.substring(6)}</td>
+                   <td class="ng-binding">
+                   ${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][(new Date(value.date).getMonth())]}
+                   </td>
+                   <td class="ng-binding">${value.date.substring(4,5)}</td>
+                   <td class="ng-binding">₱${value.cash.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                   <td class="ng-binding">₱${value.cheque.replace(/\B(?=(\d{3})+(?!\d))/g, ",") || 0}</td>
+                   <td class="ng-binding">₱${value.total.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+
+               </tr>`
+               }
+               htmlData +=`<tr ng-if style="background-color: #57889c!important;
+               color: white;">
+                   <td colspan="5"></td>
+
+                   <td><strong>Total:</strong> </td>
+                   <td><strong>₱${total_sum[key].total_cash_check}</strong></td>
+               </tr>`
+
+           }
+            $('#appendtable').after(htmlData);
             $scope.$apply(function() {
 
 
-                var tcol = 0;
+
+                var tcol = 0,
+                    dtotal = 0,
+                    tcash = 0,
+                    tcheque = 0;
+                var obj = [];
                 let returnArr = [];
+                var i = 0;
                 snapshot.forEach(childSnapshot => {
+                    i++;
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
-                    if (datetoday === item.date) {
-                        returnArr.push(item);
-                        tcol += 1 * item.total;
+
+
+                    tcash += 1 * item.cash
+                    tcheque += 1 * item.cheque
+                    tcol += 1 * item.total;
+                    dtotal = tcash + tcheque
+
+                    console.log(item.cash)
+                    obj = {
+                        date: item.date,
+                        cash: item.cash,
+                        cheque: item.cheque,
+                        total: item.total,
                     }
+
+                    obj[item.date] = (obj[item.date] ?? 0) + +item.cash
+                    returnArr.push(obj);
+
+
+
                 });
-                $scope.crs = returnArr;
+                $scope.crss = total_sum;
+                console.log(returnArr)
+                    // console.log($scope.crs)
                 $scope.tcol = tcol;
+                $scope.dtotal = dtotal;
+
 
             });
+        
             $('#here').after(' <ul style="margin:0!important;margin-top:4px" class="pagination pagination-sm pull-right"  ><li ><a href="#crlist" rel="0" id="backward"> < </a></li> <li id="nav"></li>   <li><a href="#crlist" rel="0" id="forward"> > </a></li></ul>');
             var rowsShown = localStorage.getItem('pf')
 

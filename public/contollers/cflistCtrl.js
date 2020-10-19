@@ -2,7 +2,7 @@ angular.module('newApp').controller('cflistCtrl', function($scope, $timeout) {
     pageSetUp();
     firebase.database().ref('/cash_flows/').orderByChild('uid').on("value", function(snapshot) {
 
-
+        console.log(snapshot.val())
         if (!localStorage.getItem('pf')) {
             if (localStorage.getItem('pf') <= 10) {
                 localStorage.setItem('pf', 10)
@@ -21,20 +21,20 @@ angular.module('newApp').controller('cflistCtrl', function($scope, $timeout) {
         $timeout(function() {
             $scope.$apply(function() {
 
-
                 var tcol = 0;
                 let returnArr = [];
                 snapshot.forEach(childSnapshot => {
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
+                    returnArr.push(item);
                     if (datetoday === item.date) {
-                        returnArr.push(item);
+
                         tcol += 1 * item.total;
                     }
                 });
                 $scope.cfs = returnArr;
                 $scope.tcol = tcol;
-
+                console.log(returnArr)
             });
             $('#here').after(' <ul style="margin:0!important;margin-top:4px" class="pagination pagination-sm pull-right"  ><li ><a href="#cflist" rel="0" id="backward"> < </a></li> <li id="nav"></li>   <li><a href="#cflist" rel="0" id="forward"> > </a></li></ul>');
             var rowsShown = localStorage.getItem('pf')
