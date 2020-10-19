@@ -32,16 +32,7 @@ angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
 
            
            for (const key in reciepts) {
-            let c = 1;
-           for (let k in total_sum){
-               for(let j in k) {
-               j['count'] = c++
-               reciepts[key]['count'] = c++;
-           }
-           }
 
-
-             
                total_sum[reciepts[key]['date']] ? total_sum[reciepts[key]['date']].push(reciepts[key]) : (total_sum[reciepts[key]['date']] = [reciepts[key]])
                total_sum[reciepts[key]['date']]['date'] = reciepts[key].date
                total_sum[reciepts[key]['date']]['total_cash'] = (total_sum[reciepts[key]['date']]['total_cash'] ?? 0) + +reciepts[key]['cash']
