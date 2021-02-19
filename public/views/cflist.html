@@ -1,13 +1,14 @@
 <style>
     th {
-        background-color: #57889c!important;
+        background-color: #57889c !important;
         color: white;
     }
 </style>
 <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
 
     <!-- Widget ID (each widget will need unique ID)-->
-    <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="true" style="margin-bottom: 3px!important;">
+    <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="true"
+        style="margin-bottom: 3px!important;">
         <!-- widget options:
         usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
@@ -32,19 +33,19 @@
 
 
 
-            <label class="input"> 
-                    <input type="text" name="name" ng-model="findcf"> <i class="icon-append fa fa-search"></i>
+            <label class="input">
+                <input type="text" name="name" ng-model="findcf"> <i class="icon-append fa fa-search"></i>
             </label>
 
             <label class="input pull-right">
                 <label class="select ">Page Filter
-                    <select name="options" id="pfilter" >
-                       
+                    <select name="options" id="pfilter">
+
                         <option value="10">10</option>
                         <option value="30">30</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
-                        
+
                     </select> <i></i> </label>
             </label>
 
@@ -60,6 +61,7 @@
                         <th>Details</th>
                         <th>Ramarks</th>
                         <th>Amount</th>
+                        <th colspan="2">Controls</th>
                     </tr>
                 </thead>
                 <tbody ng-repeat="cf in cfs  | filter: findcf">
@@ -73,6 +75,17 @@
                         <td> {{ncf.Description}}</td>
                         <td>{{ncf.Remarks}}</td>
                         <td>{{ncf.Amount | currency : '₱ ' : 2}}</td>
+                        <td class="col col-4">
+
+                            <button type="button" class="btn  btn-block btn-success " ng-click="selectUser(cf)"><i
+                                    class="fa fa-pencil"></i> Edit</button>
+                        </td>
+                        <td class="col col-4">
+
+                            <button type="button" class="btn btn-block btn-danger" ng-click="selectUser2(cf)"><i
+                                    class="fa fa-minus-circle"></i> Delete</button>
+
+                        </td>
                     </tr>
                     <tr style="background-color: #57889c!important;
                     color: white;">
@@ -80,6 +93,7 @@
 
                         <td><strong>Total:</strong> </td>
                         <td><strong> {{cf.total | currency : '₱ ' : 2}} </strong></td>
+                        <td colspan="2"></td>
                     </tr>
 
                 </tbody>
@@ -93,6 +107,7 @@
                     <td>
                         <h6>{{tcol | currency : '₱ ' : 2}} </h6>
                     </td>
+                    <td colspan="2"></td>
                 </tr>
 
 
@@ -109,3 +124,179 @@
 
     <span id="here"></span>
 </article>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Info.</h4>
+            </div>
+
+            <div class="modal-body">
+
+
+                <form class="smart-form " id="editcf">
+                    <header>
+                        Cash Flow
+                    </header>
+
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-3">
+                                <label class="label">OR#</label>
+                                <label class="input"> <i class="icon-append fa fa-tags"></i>
+                                    <input type="text" ng-model="clickedUser.ornumber" placeholder="OR No." required>
+                                </label>
+                            </section>
+                            <section class="col col-3">
+                                <label class="label">Last Name</label>
+                                <label class="input"> <i class="icon-append fa fa-user"></i>
+                                    <input type="text" ng-model="Lname" placeholder="Last Name" required>
+                                </label>
+                            </section>
+                            <section class="col col-3">
+                                <label class="label">Firts Name</label>
+                                <label class="input"> <i class="icon-append fa fa-user"></i>
+                                    <input type="text" ng-model="Fname" placeholder="Firts Name" required>
+                                </label>
+                            </section>
+                            <section class="col col-3">
+                                <label class="label">Course & Year</label>
+                                <label class="input"> <i class="icon-append fa fa-level-up"></i>
+                                    <input type="text" ng-model="clickedUser.course" placeholder="Course & Year"
+                                        required>
+                                </label>
+                            </section>
+
+                        </div>
+
+                        <div class="panel-body ">
+
+                            <div class="btn-group btn-group-sm pull-right">
+                                <button type="button" class="btn btn-success " ng-click="addtr()"><i
+                                        class="fa fa-plus-circle"></i></button>
+
+                                <button type="button" class="btn btn-danger" ng-click="removetr()"><i
+                                        class="fa fa-minus-circle"></i></button>
+                            </div>
+                            <br>
+                            <br>
+                            <table id="convert-table" class="table table-striped table-bordered table-hover"
+                                width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Particulars</th>
+                                        <th>Description</th>
+                                        <th>Remarks</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="appendhere">
+                                    <tr class="row_to_clone" ng-repeat="ncf in clickedUser.transaction ">
+                                        <td> <label class="input">
+                                                <input type="text" name="particulars" placeholder="Particulars"
+                                                    ng-model="ncf['Particulars']" required>
+                                            </label></td>
+                                        <td>
+                                            <select name="interested " id="type" required class="form-control btn-block"
+                                                ng-model="ncf['Description']">
+                                                <option value="Select" disabled=" ">Select</option>
+                                                <option value="Miscellaneous Fee" selected="true">Miscellaneous Fee
+                                                </option>
+                                                <option value="Tuition Fee">Tuition Fee</option>
+                                                <option value="Laboratory/Workshop Fee">Laboratory/Workshop Fee</option>
+                                                <option value="Uniforms">Uniforms</option>
+                                                <option value="Logo">Logo</option>
+                                                <option value="Credentials">Credentials</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                        </td>
+                                        <td><label class="input">
+                                                <input type="text" name="remarks" placeholder="Remarks"
+                                                    ng-model="ncf['Remarks']">
+                                            </label></td>
+                                        </td>
+                                        <td class="col-md-2">
+
+                                            <label class="input col-md-10">
+                                                <input type="text" name="amount" value="" class="txt" autocomplete='off'
+                                                    ng-model="ncf['Amount']" />
+                                            </label>
+
+                                            <label class="input col-md-1">
+                                                <button class="btn btn-danger btn-sm deleteb">X</button>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <h4>Grand Total</h4>
+                                        </td>
+                                        <td>
+                                            <h4><label class="input">
+                                                    <span id="sum">0.00</span>
+
+                                                </label></h4>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </fieldset>
+                    <br>
+                    <footer>
+                        <button type="submit " class="btn btn-primary ">Submit</button>
+                        <button type="button " class="btn btn-default " onclick="  window.location.href = '#'
+                        window.location.href = '#crnew' ">Clear</button>
+
+                    </footer>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Info.</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <p>Are you sure you want to delete <strong style="color: red;">{{clickedUser.name}}</strong>'s
+                    information?
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" class="close" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteUser()">Yes</button>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

@@ -1,8 +1,8 @@
-angular.module('newApp').controller('crnewCtrl', function($scope, $timeout) {
+angular.module('newApp').controller('crnewCtrl', function ($scope, $timeout) {
     pageSetUp();
 
 
-    $('#newcr').on('submit', function(e) {
+    $('#newcr').on('submit', function (e) {
         e.preventDefault();
         var uid = firebase.database().ref().child('cash_receipts').push().key;
 
@@ -12,7 +12,8 @@ angular.module('newApp').controller('crnewCtrl', function($scope, $timeout) {
             cheque: $(".cheque").val(),
             total: $('.total').val(),
             description: $('.description').val(),
-            remarks: $('.remarks').val()
+            remarks: $('.remarks').val(),
+            key: uid
         }
 
 
@@ -23,7 +24,7 @@ angular.module('newApp').controller('crnewCtrl', function($scope, $timeout) {
         console.log(updates)
         if (updates) {
             $("#notif").append('<div class="alert alert-success fade in"><button class="close" data-dismiss="alert">×</button><i class="fa-fw fa fa-check"></i><strong>Success</strong> Data had been save!.</div>');
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "#"
                 window.location.href = "#crnew"
             }, 2000);

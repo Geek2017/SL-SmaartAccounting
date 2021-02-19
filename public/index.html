@@ -74,9 +74,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 <!-- Startup image for web apps -->
-<link rel="apple-touch-startup-image" href="./assets/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-<link rel="apple-touch-startup-image" href="./assets/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-<link rel="apple-touch-startup-image" href="./assets/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+<link rel="apple-touch-startup-image" href="./assets/img/splash/ipad-landscape.png"
+    media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<link rel="apple-touch-startup-image" href="./assets/img/splash/ipad-portrait.png"
+    media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="./assets/img/splash/iphone.png"
+    media="screen and (max-device-width: 320px)">
 
 <script src="./assets/AngularJS/angular.js"></script>
 <script src="./assets/AngularJS/angular-route.js"></script>
@@ -141,7 +144,8 @@
 
                 <!-- Note: The activity badge color changes when clicked and resets the number to 0
 				Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-                <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
+                <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b>
+                </span>
 
                 <!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
                 <div class="ajax-dropdown">
@@ -149,14 +153,14 @@
                     <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
                     <div class="btn-group btn-group-justified" data-toggle="buttons">
                         <label class="btn btn-default">
-							<input type="radio" name="activity" id="ajax/notify/mail.html">
-							Msgs (14) </label>
+                            <input type="radio" name="activity" id="ajax/notify/mail.html">
+                            Msgs (14) </label>
                         <label class="btn btn-default">
-							<input type="radio" name="activity" id="ajax/notify/notifications.html">
-							notify (3) </label>
+                            <input type="radio" name="activity" id="ajax/notify/notifications.html">
+                            notify (3) </label>
                         <label class="btn btn-default">
-							<input type="radio" name="activity" id="ajax/notify/tasks.html">
-							Tasks (4) </label>
+                            <input type="radio" name="activity" id="ajax/notify/tasks.html">
+                            Tasks (4) </label>
                     </div>
 
                     <!-- notification content -->
@@ -164,7 +168,8 @@
 
                         <div class="alert alert-transparent">
                             <h4>Click a button to show messages here</h4>
-                            This blank page message helps protect your privacy, or you can show the first message here automatically.
+                            This blank page message helps protect your privacy, or you can show the first message here
+                            automatically.
                         </div>
 
                         <i class="fa fa-lock fa-4x fa-border"></i>
@@ -174,10 +179,11 @@
 
                     <!-- footer: refresh area -->
                     <span> Last updated on: 12/12/2013 9:43AM
-						<button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
-							<i class="fa fa-refresh"></i>
-						</button> 
-					</span>
+                        <button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..."
+                            class="btn btn-xs btn-default pull-right">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+                    </span>
                     <!-- end footer -->
 
                 </div>
@@ -191,7 +197,8 @@
 
                 <!-- collapse menu button -->
                 <div id="hide-menu" class="btn-header pull-right">
-                    <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+                    <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i
+                                class="fa fa-reorder"></i></a> </span>
                 </div>
                 <!-- end collapse menu -->
 
@@ -204,23 +211,30 @@
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li>
-                                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
+                                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i
+                                        class="fa fa-cog"></i> Setting</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
+                                <a href="profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i
+                                        class="fa fa-user"></i> <u>P</u>rofile</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
+                                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"
+                                    data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <u>S</u>creen</a>
+                                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"
+                                    data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full
+                                    <u>S</u>creen</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="login.html" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                                <a href="login.html" class="padding-10 padding-top-5 padding-bottom-5"
+                                    data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i>
+                                    <strong><u>L</u>ogout</strong></a>
                             </li>
                         </ul>
                     </li>
@@ -228,7 +242,9 @@
 
                 <!-- logout button -->
                 <div id="logout" class="btn-header transparent pull-right">
-                    <span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+                    <span> <a href="login.html" title="Sign Out" data-action="userLogout"
+                            data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i
+                                class="fa fa-sign-out"></i></a> </span>
                 </div>
                 <!-- end logout button -->
 
@@ -240,7 +256,8 @@
 
                 <!-- input: search field -->
                 <form action="search.html" class="header-search pull-right">
-                    <input id="search-fld" type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
+                    <input id="search-fld" type="text" name="param" placeholder="Find reports and more"
+                        data-autocomplete='[
 					"ActionScript",
 					"AppleScript",
 					"Asp",
@@ -264,33 +281,40 @@
 					"Scala",
 					"Scheme"]'>
                     <button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-                    <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i
+                            class="fa fa-times"></i></a>
                 </form>
                 <!-- end input: search field -->
 
                 <!-- fullscreen button -->
                 <div id="fullscreen" class="btn-header transparent pull-right">
-                    <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
+                    <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i
+                                class="fa fa-arrows-alt"></i></a> </span>
                 </div>
                 <!-- end fullscreen button -->
 
                 <!-- #Voice Command: Start Speech -->
                 <div id="speech-btn" class="btn-header transparent pull-right hidden-sm hidden-xs">
                     <div>
-                        <a href="javascript:void(0)" title="Voice Command" data-action="voiceCommand"><i class="fa fa-microphone"></i></a>
+                        <a href="javascript:void(0)" title="Voice Command" data-action="voiceCommand"><i
+                                class="fa fa-microphone"></i></a>
                         <div class="popover bottom">
                             <div class="arrow"></div>
                             <div class="popover-content">
-                                <h4 class="vc-title">Voice command activated <br><small>Please speak clearly into the mic</small></h4>
+                                <h4 class="vc-title">Voice command activated <br><small>Please speak clearly into the
+                                        mic</small></h4>
                                 <h4 class="vc-title-error text-center">
                                     <i class="fa fa-microphone-slash"></i> Voice command failed
                                     <br><small class="txt-color-red">Must <strong>"Allow"</strong> Microphone</small>
-                                    <br><small class="txt-color-red">Must have <strong>Internet Connection</strong></small>
+                                    <br><small class="txt-color-red">Must have <strong>Internet
+                                            Connection</strong></small>
                                 </h4>
-                                <a href="javascript:void(0);" class="btn btn-success" onclick="commands.help()">See Commands</a>
-                                <a href="javascript:void(0);" class="btn bg-color-purple txt-color-white" onclick="$('#speech-btn .popover').fadeOut(50);">Close Popup</a>
+                                <a href="javascript:void(0);" class="btn btn-success" onclick="commands.help()">See
+                                    Commands</a>
+                                <a href="javascript:void(0);" class="btn bg-color-purple txt-color-white"
+                                    onclick="$('#speech-btn .popover').fadeOut(50);">Close Popup</a>
                             </div>
                         </div>
                     </div>
@@ -311,15 +335,16 @@
 
             <!-- User info -->
             <div class="login-info">
-                <span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="./assets/img/avatars/male.png" alt="me" class="online" /> 
-						<span id="displayname">
-							
-						</span>
+                <span>
+                    <!-- User image size is adjusted inside CSS, it should stay as it -->
 
-                </a>
+                    <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                        <img src="./assets/img/avatars/male.png" alt="me" class="online" />
+                        <span id="displayname">
+
+                        </span>
+
+                    </a>
 
                 </span>
             </div>
@@ -329,13 +354,15 @@
             <nav>
                 <ul>
                     <li class="active">
-                        <a href="#/" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+                        <a href="#/" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span
+                                class="menu-item-parent">Dashboard</span></a>
                     </li>
 
 
 
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="menu-item-parent">Chart of Accounts</span></a>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="menu-item-parent">Chart of
+                                Accounts</span></a>
                         <ul>
                             <li>
                                 <a href="#/coanew"><i class="fa fa-file-text-o"></i>New COA</a>
@@ -357,7 +384,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa  fa-files-o"></i> <span class="menu-item-parent">Cash Receips</span></a>
+                        <a href="#"><i class="fa  fa-files-o"></i> <span class="menu-item-parent">Cash
+                                Receips</span></a>
                         <ul>
                             <li>
                                 <a href="#/crnew"><i class="fa fa-file-text-o"></i>New CR</a>
@@ -368,7 +396,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa  fa-exchange"></i> <span class="menu-item-parent">Cash Disbursement</span></a>
+                        <a href="#"><i class="fa  fa-exchange"></i> <span class="menu-item-parent">Cash
+                                Disbursement</span></a>
                         <ul>
                             <li>
                                 <a href="#/cdnew"><i class="fa fa-file-text-o"></i>New CD</a>
@@ -381,9 +410,9 @@
 
                 </ul>
             </nav>
-            <span class="minifyme" data-action="minifyMenu"> 
-				<i class="fa fa-arrow-circle-left hit"></i> 
-			</span>
+            <span class="minifyme" data-action="minifyMenu">
+                <i class="fa fa-arrow-circle-left hit"></i>
+            </span>
 
         </aside>
         <!-- END NAVIGATION -->
@@ -392,24 +421,28 @@
         <div id="main" role="main">
             <div class="row-fluid">
                 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                    <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Dashboard <span>>Analytics Insight</span></h1>
+                    <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Dashboard
+                        <span>>Analytics Insight</span></h1>
                 </div>
                 <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
                     <ul id="sparks" class="">
                         <li class="sparks-info">
-                            <h5> Precision <span class="txt-color-blue"><i class="fa fa-arrow-circle-up"></i>&nbsp;94.8%</span></h5>
+                            <h5> Precision <span class="txt-color-blue"><i
+                                        class="fa fa-arrow-circle-up"></i>&nbsp;94.8%</span></h5>
                             <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
                                 1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
                             </div>
                         </li>
                         <li class="sparks-info">
-                            <h5> Recall <span class="txt-color-purple"><i class="fa fa-arrow-circle-up"></i>&nbsp;94.8%</span></h5>
+                            <h5> Recall <span class="txt-color-purple"><i
+                                        class="fa fa-arrow-circle-up"></i>&nbsp;94.8%</span></h5>
                             <div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
                                 110,150,300,130,400,240,220,310,220,300, 270, 210
                             </div>
                         </li>
                         <li class="sparks-info">
-                            <h5> AP <span class="txt-color-greenDark"><i class="fa fa-arrow-circle-up"></i>&nbsp;97.6%</span></h5>
+                            <h5> AP <span class="txt-color-greenDark"><i
+                                        class="fa fa-arrow-circle-up"></i>&nbsp;97.6%</span></h5>
                             <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
                                 110,150,300,130,400,240,220,310,220,300, 270, 210
                             </div>
@@ -429,16 +462,19 @@
         <div class="page-footer">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <span class="txt-color-white">SLTCFI<span class="hidden-xs"> : SMART | ACCOUNTING  </span> © 2020-2021</span>
+                    <span class="txt-color-white">SLTCFI<span class="hidden-xs"> : SMART | ACCOUNTING </span> ©
+                        2020-2021</span>
                 </div>
 
                 <div class="col-xs-6 col-sm-6 text-right hidden-xs">
                     <div class="txt-color-white inline-block">
-                        <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
+                        <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i>
+                            <strong>52 mins ago &nbsp;</strong> </i>
                         <div class="btn-group dropup">
-                            <button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
-								<i class="fa fa-link"></i> <span class="caret"></span>
-							</button>
+                            <button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white"
+                                data-toggle="dropdown">
+                                <i class="fa fa-link"></i> <span class="caret"></span>
+                            </button>
                             <ul class="dropdown-menu pull-right text-left">
                                 <li>
                                     <div class="padding-5">
@@ -460,7 +496,8 @@
                                 <li class="divider"></li>
                                 <li>
                                     <div class="padding-5">
-                                        <p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
+                                        <p class="txt-color-darken font-sm no-margin">Memory Load <span
+                                                class="text-danger">*critical*</span></p>
                                         <div class="progress progress-micro no-margin">
                                             <div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
                                         </div>
@@ -584,7 +621,8 @@
     <!-- Full Calendar -->
     <script src="./assets/js/plugin/moment/moment.min.js"></script>
     <script src="./assets/js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/table-to-json@1.0.0/lib/jquery.tabletojson.min.js" integrity="sha256-H8xrCe0tZFi/C2CgxkmiGksqVaxhW0PFcUKZJZo1yNU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/table-to-json@1.0.0/lib/jquery.tabletojson.min.js"
+        integrity="sha256-H8xrCe0tZFi/C2CgxkmiGksqVaxhW0PFcUKZJZo1yNU=" crossorigin="anonymous"></script>
 
 
     <!-- PAGE RELATED PLUGIN(S) -->
