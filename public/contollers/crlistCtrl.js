@@ -1,5 +1,22 @@
 angular.module('newApp').controller('crlistCtrl', function ($scope, $timeout) {
     pageSetUp();
+
+    var id;
+
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.data = [];
+
+    $scope.numberOfPages = () => {
+        return Math.ceil(
+            $scope.data.length / $scope.pageSize
+        );
+    }
+
+    for (var i = 0; i < 10; i++) {
+        $scope.data.push(`Question number ${i}`);
+    }
+
     firebase.database().ref('/cash_receipts/').orderByChild('date').on("value", function (snapshot) {
 
         if (!localStorage.getItem('pf')) {
@@ -282,4 +299,12 @@ angular.module('newApp').controller('crlistCtrl', function ($scope, $timeout) {
 
 
 
-});
+}).filter('startFrom', function () {
+    return function (input, start) {
+        if (!input || !input.length) {
+            return;
+        }
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+})

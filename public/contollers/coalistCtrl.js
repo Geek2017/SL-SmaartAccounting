@@ -1,6 +1,21 @@
 angular.module('newApp').controller('coalistCtrl', function ($scope, $timeout) {
     pageSetUp();
 
+    var id;
+
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.data = [];
+
+    $scope.numberOfPages = () => {
+        return Math.ceil(
+            $scope.data.length / $scope.pageSize
+        );
+    }
+
+    for (var i = 0; i < 10; i++) {
+        $scope.data.push(`Question number ${i}`);
+    }
 
     firebase.database().ref('/chart_of_accounts/').orderByChild('uid').on("value", function (snapshot) {
 
@@ -200,4 +215,10 @@ angular.module('newApp').controller('coalistCtrl', function ($scope, $timeout) {
 
 
 
-});
+}).filter('startFrom', function() {
+    return function(input, start) {
+        if (!input || !input.length) { return; }
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+})
