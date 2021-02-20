@@ -32,19 +32,13 @@
 
 
 
-            <label class="input"> 
-                    <input type="text" name="name" ng-model="findcoa"> <i class="icon-append fa fa-search"></i>
+            <label class="input">
+                <input type="text" name="name" ng-model="findcf" class="form-control">
             </label>
+
             <label class="input pull-right">
-                <label class="select ">Page Filter
-                    <select name="options" id="pfilter" >
-                       
-                        <option value="10">10</option>
-                        <option value="30">30</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        
-                    </select> <i></i> </label>
+                <label class="select ">
+                    <select class="form-control" ng-model="pageSize" ng-options="num for num in [5, 10, 15,20]" ></select> <i></i> </label>
             </label>
 
             <table id="data" class="table table-striped table-bordered table-hover" width="100%">
@@ -86,5 +80,13 @@
 
     </div>
 
-    <span id="here"></span>
+    <div class="btn-group btn-group-xs pull-right">
+        <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+       Back
+      </button>
+        <button class="btn btn-primary">{{currentPage+1}} of {{numberOfPages()}}</button>
+        <button class="btn btn-primary" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+      </button>
+    </div>
 </article>

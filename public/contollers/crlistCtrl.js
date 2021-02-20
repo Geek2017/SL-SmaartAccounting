@@ -1,5 +1,22 @@
 angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
     pageSetUp();
+
+    var id;
+
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.data = [];
+
+    $scope.numberOfPages = () => {
+        return Math.ceil(
+            $scope.data.length / $scope.pageSize
+        );
+    }
+
+    for (var i = 0; i < 10; i++) {
+        $scope.data.push(`Question number ${i}`);
+    }
+
     firebase.database().ref('/cash_receipts/').orderByChild('date').on("value", function(snapshot) {
 
         if (!localStorage.getItem('pf')) {
@@ -20,34 +37,34 @@ angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
 
 
         $timeout(function() {
-                /*
-            *
-            *   Jepoy Code
-            * 
-            */
+            /*
+             *
+             *   Jepoy Code
+             * 
+             */
 
-           let total_sum = {}
-           let reciepts = snapshot.val()
-           let counter = 1
-
-           
-           for (const key in reciepts) {
-
-               total_sum[reciepts[key]['date']] ? total_sum[reciepts[key]['date']].push(reciepts[key]) : (total_sum[reciepts[key]['date']] = [reciepts[key]])
-               total_sum[reciepts[key]['date']]['date'] = reciepts[key].date
-               total_sum[reciepts[key]['date']]['total_cash'] = (total_sum[reciepts[key]['date']]['total_cash'] ?? 0) + +reciepts[key]['cash']
-               total_sum[reciepts[key]['date']]['total_cash_check'] = (total_sum[reciepts[key]['date']]['total_cash_check'] ?? 0 ) + +reciepts[key].total
+            let total_sum = {}
+            let reciepts = snapshot.val()
+            let counter = 1
 
 
+            for (const key in reciepts) {
 
-                   // console.log(+snappy[snapper]['cash'])
-           }
-           console.log('Total sum of cash:', Object.entries(total_sum).map(item => item[1]))
+                total_sum[reciepts[key]['date']] ? total_sum[reciepts[key]['date']].push(reciepts[key]) : (total_sum[reciepts[key]['date']] = [reciepts[key]])
+                total_sum[reciepts[key]['date']]['date'] = reciepts[key].date
+                total_sum[reciepts[key]['date']]['total_cash'] = (total_sum[reciepts[key]['date']]['total_cash'] ?? 0) + +reciepts[key]['cash']
+                total_sum[reciepts[key]['date']]['total_cash_check'] = (total_sum[reciepts[key]['date']]['total_cash_check'] ?? 0) + +reciepts[key].total
+
+
+
+                // console.log(+snappy[snapper]['cash'])
+            }
+            console.log('Total sum of cash:', Object.entries(total_sum).map(item => item[1]))
             var htmlData = ''
             var c = 1
-           for (const key in total_sum){
-               for (const value of total_sum[key]){
-                   htmlData +=`<tr style="display: table-row;">
+            for (const key in total_sum) {
+                for (const value of total_sum[key]) {
+                    htmlData += `<tr style="display: table-row;">
                    <td class="ng-binding">${c++}</td>
                    <td class="ng-binding">${value.date.substring(6)}</td>
                    <td class="ng-binding">
@@ -59,8 +76,8 @@ angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
                    <td class="ng-binding">₱${value.total.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
 
                </tr>`
-               }
-               htmlData +=`<tr ng-if style="background-color: #57889c!important;
+                }
+                htmlData += `<tr ng-if style="background-color: #57889c!important;
                color: white;">
                    <td colspan="5"></td>
 
@@ -68,7 +85,7 @@ angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
                    <td><strong>₱${total_sum[key].total_cash_check}</strong></td>
                </tr>`
 
-           }
+            }
             $('#appendtable').after(htmlData);
             $scope.$apply(function() {
 
@@ -114,7 +131,7 @@ angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
 
 
             });
-        
+
             $('#here').after(' <ul style="margin:0!important;margin-top:4px" class="pagination pagination-sm pull-right"  ><li ><a href="#crlist" rel="0" id="backward"> < </a></li> <li id="nav"></li>   <li><a href="#crlist" rel="0" id="forward"> > </a></li></ul>');
             var rowsShown = localStorage.getItem('pf')
 
@@ -189,4 +206,10 @@ angular.module('newApp').controller('crlistCtrl', function($scope, $timeout) {
 
 
 
-});
+}).filter('startFrom', function() {
+    return function(input, start) {
+        if (!input || !input.length) { return; }
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+})
